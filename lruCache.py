@@ -57,7 +57,6 @@ class LRUCache:
             self.smap[key] = node           # store node location in smap
         self.addToHead(node)       
 
-
 # Your LRUCache object will be instantiated and called as such:
 # obj = LRUCache(capacity)
 # param_1 = obj.get(key)
