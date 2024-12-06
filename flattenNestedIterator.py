@@ -13,16 +13,13 @@ class NestedIterator:
         return self.nextEl.getInteger()
     
     def hasNext(self) -> bool:
-        while self.st:
-            curr = self.st[-1]                                      # peek//store it to not lose it
-            nextE = next(curr,None)                                 # store 
-
-            if not nextE:                                           # if iteration on top of stack has no elements left
+        while self.st:        
+            self.nextEl = next(self.st[-1] , None)                        # just use one next element for less confusion // Stop iteration //inf recrsion
+            if not self.nextEl:                                           # if iteration on top of stack has no elements left
                 self.st.pop()
             else:
-                if nextE.isInteger():                               # its an Integer
-                    self.nextEl = nextE
+                if self.nextEl.isInteger():                               # its an Integer
                     return True
-                else:                                               # its a list
-                    self.st.append(iter(nextE.getList()))           # add the list on top of stack and iterate 
+                else:                                                     # its a list
+                    self.st.append(iter(self.nextEl.getList()))           # add the list on top of stack and iterate 
         return False
